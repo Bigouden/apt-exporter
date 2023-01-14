@@ -1,4 +1,4 @@
-# Binance Exporter
+# Apt Exporter
 
 ## Quick Start
 
