@@ -86,8 +86,12 @@ class AptCollector():
         '''Retrieve Prometheus Metrics'''
         res = []
         metric_name = 'apt_package'
-        metric_description = [metric['description'] for metric in METRICS if metric_name == metric['name']][0]
-        metric_type = [metric['type'] for metric in METRICS if metric_name == metric['name']][0]
+        metric_description = [ metric['description']
+                               for metric in METRICS
+                               if metric_name == metric['name'] ][0]
+        metric_type = [ metric['type']
+                        for metric in METRICS
+                        if metric_name == metric['name'] ][0]
         with open(DPKG_STATUS_FILE, 'rb') as filename:
             file_content = filename.read().strip()
             packages = file_content.split(b'\n\n')
