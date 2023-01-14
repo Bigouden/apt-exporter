@@ -53,7 +53,7 @@ except ValueError:
 # Check DPKG_STATUS_FILE
 DPKG_STATUS_FILE = os.environ.get('DPKG_STATUS_FILE', '/var/lib/dpkg/status')
 if not os.path.isfile(DPKG_STATUS_FILE):
-    logging.error("Invalid DPKG_STATUS_FILE : %s", DPKG_STATUS_FILE) 
+    logging.error("Invalid DPKG_STATUS_FILE : %s", DPKG_STATUS_FILE)
     os._exit(1)
 
 # METRICS Configuration

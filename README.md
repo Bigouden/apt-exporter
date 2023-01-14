@@ -4,7 +4,7 @@
 
 ```bash
 DOCKER_BUILDKIT=1 docker build -t apt-exporter .
-docker run -dit --name apt-exporter -v /var/lib/dpkg/status:/var/lib/dpkg/status apt-exporter
+docker run -dit --name apt-exporter -v /var/lib/dpkg/status:/var/lib/dpkg/status:ro apt-exporter
 ```
 
 ## Metrics
