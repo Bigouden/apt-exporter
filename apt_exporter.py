@@ -78,9 +78,10 @@ class AptCollector():
         '''Parse Lines'''
         try:
             return [line.replace(expr, b'', 1) for line in lines if line.startswith(expr)][0]
-        except:
+        except IndexError:
             logging.error("Invalid DPKG_STATUS_FILE Format !")
             os._exit(1)
+            return None
 
     def get_metrics(self):
         '''Retrieve Prometheus Metrics'''
@@ -104,7 +105,10 @@ class AptCollector():
             metric_labels['status'] = self._parse(b'Status: ', lines).decode()
             metric_labels['section'] = self._parse(b'Section: ', lines).decode()
             metric_labels['priority'] = self._parse(b'Priority: ', lines).decode()
-            res.append({'name': metric_name, 'description': metric_description, 'type': metric_type, 'labels': metric_labels})
+            res.append({'name': metric_name,
+                        'description': metric_description,
+                        'type': metric_type,
+                        'labels': metric_labels})
         return res
 
     def collect(self):
