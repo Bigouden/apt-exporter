@@ -1,0 +1,10 @@
+Package: apt-exporter
+Status: install ok installed
+Priority: important
+Section: admin
+Installed-Size: 1
+Maintainer: Thomas GUIRRIEC <thomas@guirriec.fr>
+Architecture: all
+Multi-Arch: foreign
+Version: 1.0
+Depends: prometheus
