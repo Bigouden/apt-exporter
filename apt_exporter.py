@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #coding: utf-8
 
-'''APT Exporter'''
+'''APT-Exporter'''
 
 import logging
 import os
@@ -81,7 +81,6 @@ class AptCollector():
         except IndexError:
             logging.error("Invalid DPKG_STATUS_FILE Format !")
             os._exit(1)
-            return None
 
     def get_metrics(self):
         '''Retrieve Prometheus Metrics'''
