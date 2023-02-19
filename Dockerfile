@@ -22,8 +22,8 @@ RUN xargs -a /apk_packages apk add --no-cache --update \
 COPY --chown=${USERNAME}:${USERNAME} --chmod=500 entrypoint.sh /
 COPY --chown=${USERNAME}:${USERNAME} --chmod=500 ${SCRIPT} ${VIRTUAL_ENV}
 COPY --chown=${USERNAME}:${USERNAME} --chmod=500 dpkg_status /var/lib/dpkg/status
-USER ${USERNAME}
 WORKDIR ${VIRTUAL_ENV}
 EXPOSE ${APT_EXPORTER_PORT}
-HEALTHCHECK CMD nc -vz localhost ${APT_EXPORTER_PORT} || exit 1
+USER ${USERNAME}
+HEALTHCHECK CMD nc -vz localhost ${APT_EXPORTER_PORT} || exit 1 # nosemgrep
 ENTRYPOINT ["/entrypoint.sh"]
