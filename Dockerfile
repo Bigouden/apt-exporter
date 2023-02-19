@@ -24,6 +24,6 @@ COPY --chown=${USERNAME}:${USERNAME} --chmod=500 ${SCRIPT} ${VIRTUAL_ENV}
 COPY --chown=${USERNAME}:${USERNAME} --chmod=500 dpkg_status /var/lib/dpkg/status
 WORKDIR ${VIRTUAL_ENV}
 EXPOSE ${APT_EXPORTER_PORT}
-HEALTHCHECK CMD nc -vz localhost ${APT_EXPORTER_PORT} || exit 1
-USER exporter
+USER ${USERNAME}
+HEALTHCHECK CMD nc -vz localhost ${APT_EXPORTER_PORT} || exit 1 # nosemgrep
 ENTRYPOINT ["/entrypoint.sh"]
