@@ -39,7 +39,7 @@ Installed-Size: 76
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Architecture: amd64
 Version: 3.20191218.1ubuntu2
-Recommends: initramfs-tools (>= 0.113~) | dracut (>= 044) | tiny-initramfs
+Recommends: initramfs-tools (>= 0.113~) | tiny-initramfs
 Breaks: intel-microcode (<< 2)
 Conffiles:
  /etc/default/amd64-microcode eaa8a5fa3fb59af4f0f55e851a6e9b20
@@ -51,4 +51,4 @@ Description: Processor microcode firmware for AMD CPUs
  revision guides.
  .
  For Intel processors, please refer to the intel-microcode package.
-Original-Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
+Original-Maintainer: Henrique <hmh@debian.org>
