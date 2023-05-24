@@ -127,8 +127,8 @@ class AptCollector:
     def collect(self):
         """Collect Prometheus Metrics"""
         metrics = self.get_metrics()
-        labels = {"job": APT_EXPORTER_NAME}
         for metric in metrics:
+            labels = {"job": APT_EXPORTER_NAME}
             labels |= metric["labels"]
             prometheus_metric = Metric(
                 metric["name"], metric["description"], metric["type"]
