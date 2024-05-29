@@ -18,6 +18,9 @@ from prometheus_client import PLATFORM_COLLECTOR, PROCESS_COLLECTOR
 from prometheus_client.core import REGISTRY, CollectorRegistry, Metric
 from prometheus_client.exposition import _bake_output, _SilentHandler, parse_qs
 
+LOGFMT = "%(asctime)s - %(levelname)s - %(message)s"
+DATEFMT = "%d/%m/%Y %H:%M:%S"
+
 APT_EXPORTER_NAME = os.environ.get("APT_EXPORTER_NAME", "apt-exporter")
 APT_EXPORTER_LOGLEVEL = os.environ.get("APT_EXPORTER_LOGLEVEL", "INFO").upper()
 APT_EXPORTER_TZ = os.environ.get("TZ", "Europe/Paris")
@@ -88,8 +91,8 @@ try:
     ).timetuple()
     logging.basicConfig(
         stream=sys.stdout,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        datefmt="%d/%m/%Y %H:%M:%S",
+        format=LOGFMT,
+        datefmt=DATEFMT,
         level=APT_EXPORTER_LOGLEVEL,
     )
 except pytz.exceptions.UnknownTimeZoneError:
@@ -98,8 +101,8 @@ except pytz.exceptions.UnknownTimeZoneError:
     ).timetuple()
     logging.basicConfig(
         stream=sys.stdout,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        datefmt="%d/%m/%Y %H:%M:%S",
+        format=LOGFMT,
+        datefmt=DATEFMT,
         level="INFO",
     )
     logging.error("TZ invalid : %s !", APT_EXPORTER_TZ)
@@ -107,8 +110,8 @@ except pytz.exceptions.UnknownTimeZoneError:
 except ValueError:
     logging.basicConfig(
         stream=sys.stdout,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        datefmt="%d/%m/%Y %H:%M:%S",
+        format=LOGFMT,
+        datefmt=DATEFMT,
         level="INFO",
     )
     logging.error("APT_EXPORTER_LOGLEVEL invalid !")
@@ -141,7 +144,7 @@ class AptCollector:
     """APT Collector Class"""
 
     def __init__(self):
-        pass
+        """Init"""
 
     @staticmethod
     def _parse(expr, lines):
