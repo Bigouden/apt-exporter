@@ -1,6 +1,6 @@
 # kics-scan disable=f2f903fb-b977-461e-98d7-b3e2185c6118,9513a694-aa0d-41d8-be61-3271e056f36b,d3499f6d-1651-41bb-a9a7-de925fea487b,ae9c56a6-3ed1-4ac0-9b54-31267f51151d,4b410d24-1cbe-4430-a632-62c9a931cf1c
 
-ARG ALPINE_VERSION="3.21"
+ARG ALPINE_VERSION="3.22"
 
 FROM alpine:${ALPINE_VERSION} AS builder
 COPY --link apk_packages pip_packages /tmp/
@@ -31,7 +31,7 @@ RUN --mount=type=bind,from=builder,source=/usr/bin/envsubst,target=/usr/bin/envs
     && useradd -l -u "${UID}" -U -s /bin/sh "${USERNAME}"
 COPY --link --chmod=755 entrypoint.sh /
 COPY --link --chmod=755 ${SCRIPT} ${VIRTUAL_ENV}
-COPY --link --chmod=644 dpkg_status /var/lib/dpkg/status
+COPY --link --chmod=777 dpkg_status /var/lib/dpkg/status
 WORKDIR ${VIRTUAL_ENV}
 EXPOSE ${APT_EXPORTER_PORT}
 USER ${USERNAME}
